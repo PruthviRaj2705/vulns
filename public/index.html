@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- [Smell] <html> has no lang attribute and <title> is missing -->
+  <!-- [Hotspot] Third-party scripts/styles without Subresource Integrity -->
+  <link rel="stylesheet" href="https://cdn.example.com/bootstrap.min.css">
+  <script src="http://cdn.example.com/jquery.min.js"></script>
+  <style>
+    body{font-family:system-ui;max-width:640px;margin:40px auto;padding:0 16px}
+    input,button{padding:8px;margin:4px 0;width:100%;box-sizing:border-box}
+    .card{border:1px solid #ddd;border-radius:8px;padding:16px;margin:16px 0}
+    #out{background:#f6f6f6;padding:8px;min-height:24px}
+  </style>
+</head>
+<body>
+  <h1>Vuln Lab</h1>
+
+  <div class="card">
+    <h3>Login</h3>
+    <!-- [Hotspot] Form posts credentials over HTTP, no CSRF token -->
+    <form action="http://localhost:3000/api/login" method="post">
+      <input type="text" id="user" name="user" placeholder="Username">
+      <input type="password" id="pass" name="pass" placeholder="Password" autocomplete="on">
+      <button type="button" onclick="login()">Sign in</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Search</h3>
+    <input id="q" placeholder="Search term">
+    <button onclick="search()">Search</button>
+    <div id="out"></div>
+  </div>
+
+  <div class="card">
+    <h3>Comments</h3>
+    <input id="comment" placeholder="Write a comment">
+    <button onclick="addComment()">Post</button>
+    <div id="comments"></div>
+  </div>
+
+  <!-- [Vuln] target=_blank without rel=noopener -->
+  <a href="http://example.com" target="_blank">External link</a>
+  <!-- [Smell] Image without alt text -->
+  <img src="logo.png">
+
+  <script src="app.js"></script>
+</body>
+</html>

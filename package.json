@@ -1,0 +1,17 @@
+{
+  "name": "vuln-lab",
+  "version": "1.0.0",
+  "description": "Intentionally vulnerable app for SAST/SCA testing",
+  "main": "server.js",
+  "dependencies": {
+    "express": "4.16.0",
+    "lodash": "4.17.10",
+    "jsonwebtoken": "8.0.0",
+    "axios": "0.18.0",
+    "mongodb": "3.0.0",
+    "mysql": "2.15.0",
+    "cors": "2.8.4",
+    "express-session": "1.15.0",
+    "minimist": "0.0.8"
+  }
+}
